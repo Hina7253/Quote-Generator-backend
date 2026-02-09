@@ -101,5 +101,10 @@ public class QuoteService {
         return quotes.removeIf(quote -> quote.getId().equals(id));
     }
      // Get all categories
-
+    public List<String> getAllCategories(){
+        return quotes.stream()
+                .map(Quote::getCategory)
+                .distinct()
+                .collect(Collectors.toList());
+    }
 }
