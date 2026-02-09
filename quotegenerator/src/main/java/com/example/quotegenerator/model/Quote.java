@@ -57,4 +57,7 @@ public class Quote {
                 ", category='" + category + '\'' +
                 '}';
     }
+
+    public void setID(Long aLong) {
+    }
 }

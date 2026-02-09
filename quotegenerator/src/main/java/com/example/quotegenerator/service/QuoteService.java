@@ -7,19 +7,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+
 @Service
 public class QuoteService {
+
     private List<Quote> quotes = new ArrayList<>();
     private Long nextId = 1L;
     private Random random = new Random();
 
+    // Constructor - Initial quotes add karte hain
     public QuoteService() {
         initializeQuotes();
     }
-    // Initional Quotes
-    private void initializeQuotes(){
+
+    // Initial quotes
+    private void initializeQuotes() {
         quotes.add(new Quote(nextId++,
-                "The Only way to do great work is to love what you do",
+                "The only way to do great work is to love what you do.",
                 "Steve Jobs",
                 "motivational"));
 
@@ -59,49 +63,49 @@ public class QuoteService {
                 "inspirational"));
     }
 
-    // Get Random Quote
-    public Quote getRandomQuote(){
-        if(quotes.isEmpty()){
+    // Get random quote
+    public Quote getRandomQuote() {
+        if (quotes.isEmpty()) {
             return null;
         }
         int index = random.nextInt(quotes.size());
         return quotes.get(index);
     }
 
-    // Get all Quotes
-
+    // Get all quotes
     public List<Quote> getAllQuotes() {
         return new ArrayList<>(quotes);
     }
 
-    // Get Quotes by category
-    public List<Quote> getQuotesByCategory(String category){
+    // Get quotes by category
+    public List<Quote> getQuotesByCategory(String category) {
         return quotes.stream()
                 .filter(quote -> quote.getCategory().equalsIgnoreCase(category))
                 .collect(Collectors.toList());
     }
 
-    // Add new Quote
-    public Quote addQuote(Quote quote){
-        quote.setID(nextId++);
+    // Add new quote
+    public Quote addQuote(Quote quote) {
+        quote.setId(nextId++);
         quotes.add(quote);
         return quote;
     }
 
-    // Add quote by ID
-    public Quote getQuoteById(LongId){
+    // Get quote by ID
+    public Quote getQuoteById(Long id) {
         return quotes.stream()
                 .filter(quote -> quote.getId().equals(id))
                 .findFirst()
                 .orElse(null);
     }
 
-    // Delete Quote
-    public Boolean deletQuote(Long id){
+    // Delete quote
+    public boolean deleteQuote(Long id) {
         return quotes.removeIf(quote -> quote.getId().equals(id));
     }
-     // Get all categories
-    public List<String> getAllCategories(){
+
+    // Get all categories
+    public List<String> getAllCategories() {
         return quotes.stream()
                 .map(Quote::getCategory)
                 .distinct()
