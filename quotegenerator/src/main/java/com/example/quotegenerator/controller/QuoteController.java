@@ -1,4 +1,4 @@
-package com.example.quotegenerator.controller;
+
 
 import com.example.quotegenerator.service.QuoteService;
 import org.springframework.web.bind.annotation.CrossOrigin;
